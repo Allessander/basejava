@@ -5,7 +5,7 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 
-public class ArrayStorage {
+public class ArrayStorage implements Storage{
     private final int STORAGE_CAPACITY = 10_000;
     private final Resume[] storage = new Resume[STORAGE_CAPACITY];
     private int size;

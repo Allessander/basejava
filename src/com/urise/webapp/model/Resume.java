@@ -9,11 +9,6 @@ public class Resume {
     private String uuid;
 
     @Override
-    public String toString() {
-        return uuid;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
