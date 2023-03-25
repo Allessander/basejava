@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 
 public class ArrayStorage {
-    private final int capacity = 10_000;
-    private final Resume[] storage = new Resume[capacity];
+    private final int STORAGE_CAPACITY = 10_000;
+    private final Resume[] storage = new Resume[STORAGE_CAPACITY];
     private int size;
 
     public void clear() {
@@ -16,10 +16,10 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        if (size == capacity) {
+        if (size == STORAGE_CAPACITY) {
             System.out.println("Ошибка: массив заполнен!");
         } else if (findIndex(r.toString()) != -1) {
-            System.out.printf("Ошибка: резюме %s уже есть в массиве!\n", r.toString());
+            System.out.printf("Ошибка: резюме %s уже есть в массиве!\n", r.getUuid());
         } else {
             storage[size] = r;
             size++;
@@ -27,9 +27,9 @@ public class ArrayStorage {
     }
 
     public void update(Resume r) {
-        int resumeIndex = findIndex(r.toString());
-        if (resumeIndex == -1) {
-            System.out.printf("Ошибка: резюме %s уже есть в массиве!\n", r.toString());
+        int index = findIndex(r.toString());
+        if (index == -1) {
+            System.out.printf("Ошибка: резюме %s уже есть в массиве!\n", r.getUuid());
         } else {
             storage[size] = r;
             size++;
@@ -37,21 +37,21 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        int resumeIndex = findIndex(uuid);
-        if (resumeIndex == -1) {
+        int index = findIndex(uuid);
+        if (index == -1) {
             System.out.printf("Ошибка: резюме %s не найдено в массиве!\n", uuid);
             return null;
         } else {
-            return storage[resumeIndex];
+            return storage[index];
         }
     }
 
     public void delete(String uuid) {
-        int resumeIndex = findIndex(uuid);
-        if (resumeIndex == -1) {
+        int index = findIndex(uuid);
+        if (index == -1) {
             System.out.printf("Ошибка: резюме %s не найдено в массиве!\n", uuid);
         } else {
-            storage[resumeIndex] = storage[size - 1];
+            storage[index] = storage[size - 1];
             storage[size - 1] = null;
             size--;
         }
